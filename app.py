@@ -12,8 +12,9 @@ def home():
 @app.route('/predict_passengers',methods=['POST'])
 def predict_passengers():
     int_features = [int(x) for x in request.form.values()]
-    final_features = [np.array(int_features)]
-    prediction = model.predict([[[ 1.09327802,  0.07223151,  0.64168895]]])
+    final_features = [int_features]
+    print(final_features)
+    prediction = model.predict([final_features])
     output = prediction
 
     return render_template('index.html', prediction_text='Predicted passengers for next week or month $ {}'.format(output))
